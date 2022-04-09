@@ -7,7 +7,7 @@ function App() {
   return (
     <button className="App" onClick={Product.test}>
       tinder
-      {console.log(JSON.parse.call)}
+      {/* {console.log(JSON.parse.call)} */}
     </button>
   );
 }
