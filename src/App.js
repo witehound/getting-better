@@ -24,11 +24,11 @@ function App() {
   const word2 = "dot";
 
   const obj = {
-    a: "1",
-    c: "2",
-    t: "3",
-    d: "4",
-    o: "3",
+    a: 1,
+    c: 2,
+    t: 3,
+    d: 4,
+    o: 3,
   };
 
   const array = [];
@@ -40,10 +40,8 @@ function App() {
   const match = (word, obj) => {
     const splittedWord = word.split("");
     for (let i = 0; i < splittedWord.length; i++) {
-      // console.log(obj.splittedWord[i])
-      console.log(obj[splittedWord[i]])
       array.push(obj[splittedWord[i]]);
-      sum += parseInt(obj[splittedWord[i]]);
+      sum += obj[splittedWord[i]];
     }
     console.log( `result : ${sum}(${array[0]},${array[1]},${array[2]})`)
   };
