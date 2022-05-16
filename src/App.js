@@ -20,7 +20,8 @@ function App() {
   //create a global array and also push the values there
   // restult string and use all the values
 
-  const word = "cat";
+  const word = "can";
+  const tile = "catt_"
   const word2 = "dot";
 
   const obj = {
@@ -29,24 +30,42 @@ function App() {
     t: 3,
     d: 4,
     o: 3,
+    s: 2,
+    _ : 0
   };
 
   const array = [];
 
   let sum = 0;
 
-  const splittedWord = word.split("");
-
-  const match = (word, obj) => {
+  const match = (word, tile, obj) => {
+    let tileObj = {}
+    let wordObj = {}
     const splittedWord = word.split("");
-    for (let i = 0; i < splittedWord.length; i++) {
-      array.push(obj[splittedWord[i]]);
-      sum += obj[splittedWord[i]];
+    const splittedTile = tile.split("");
+    for (let i = 0; i < splittedTile.length; i++) {
+     tileObj[splittedTile[i]] = obj[splittedTile[i]]
     }
-    console.log( `result : ${sum}(${array[0]},${array[1]},${array[2]})`)
+
+    for (let i = 0; i < splittedWord.length; i++) {
+      wordObj[splittedWord[i]] = tileObj[splittedWord[i]]
+     }
+
+    
+
+
+
+
+    // for (let i = 0; i < splittedWord.length; i++) {
+    //   array.push(obj[splittedWord[i]]);
+    //   sum += obj[splittedWord[i]];
+    // }
+    // console.log( `result : ${sum}(${array[0]},${array[1]},${array[2]})`)
+    // console.log(tileObj,wordObj)
+    console.log(wordObj.c)
   };
 
-  match(word, obj);
+  match(word, tile,obj);
 
   // console.log(array, sum);
 
