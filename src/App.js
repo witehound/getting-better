@@ -179,41 +179,89 @@ const countChar = (a,b) => {
    console.log(char)
 }
 
-countChar("kakkerlak","k")
-// const zigGetter = (s, row ) => {
-//   const test = []
-//   let zigColunmOne = 0
-//   let paced 
-//   let pacedTwo
-//   const stringLength = s.length
-//   const refinedString = s.split("")
-//   zigColunmOne = row + (row -2 )
-//   let remainder = stringLength % zigColunmOne
-//   const zigColunmEnd = (stringLength - remainder) / zigColunmOne 
-//   paced = 1 + (row - 2)
-//   let colunms = 1 + (zigColunmEnd * paced)
-//   console.log(refinedString) 
-//   for(let i = 0; i < row; i++){
-//       console.log(refinedString[2])
-//       test.push(refinedString[i])
-//   }
-//   for(let i = 0; i < row; i++){
-//       refinedString.shift()
-//   }
+// countChar("kakkerlak","k")
 
-//   console.log("colunm", zigColunmOne)
-//   console.log("colunmEnd", zigColunmEnd)
-//   console.log("stringl", stringLength)
-//   console.log("remaider", remainder)
-//   console.log("paced", paced)
-//   console.log("colunms",colunms)
-//   console.log(refinedString)
-//   console.log("test", test)
+// let daysAfter = 0
+// let daysSlide = 0
+// const daysForDepth = (depth) =>{
+//   daysAfter = depth / (7 - 2)
+//   console.log(daysAfter)
 // }
 
-// zigGetter("paypalishiring", 5)
+// daysForDepth(25)
+
+// ------------------------------------
+// let depth = 31;
+// let remainder = 0
+// if (depth < 5 ) {
+//   console.log(depth) 
+//   return
+// }
+// remainder = 32 % 5
+// let endNumber = depth - remainder
+// let daysToout = 0
+// for(let count = 0; count < endNumber; count += 5){
+//   daysToout++
+// }
+// console.log(daysToout)
 
 
+const zigGetter = (s, row ) => {
+  const test = []
+  let zigColunmOne = 0
+  let paced 
+  let pacedTwo
+  const stringLength = s.length
+  const refinedString = s.split("")
+  zigColunmOne = row + (row -2 )
+  let remainder = stringLength % zigColunmOne
+  const zigColunmEnd = (stringLength - remainder) / zigColunmOne 
+  paced = 1 + (row - 2)
+  let colunms = 1 + (zigColunmEnd * paced)
+  console.log(refinedString) 
+  for(let i = 0; i < row; i++){
+      console.log(refinedString[2])
+      test.push(refinedString[i])
+  }
+  for(let i = 0; i < row; i++){
+      refinedString.shift()
+  }
+
+  console.log("one", zigColunmOne)
+  console.log("colunmEnd", zigColunmEnd)
+  console.log("stringl", stringLength)
+  console.log("remaider", remainder)
+  console.log("paced", paced)
+  console.log("colunms",colunms)
+  console.log(refinedString)
+  console.log("test", test)
+}
+
+// zigGetter("paypalishiring", 4)
+
+const doReverse =(a) =>{
+  let splitted = a.toString().split("")
+  let dash = ""
+  for(let i = 0; i < splitted.length; i++){
+    if(splitted[i] === "-"){
+      splitted.splice(i, 1)
+      dash+="-"
+    }
+  }
+  let reverse = splitted.reverse()
+  let finalle = ""
+  for(let i = 0; i < reverse.length; i++){
+    if(reverse[i] > 0 || i === "-"){
+      let arrTostry = reverse[i].toString()
+      finalle+= arrTostry
+    }
+  }
+  finalle = dash + finalle
+
+  return finalle
+}
+
+doReverse(-5976)
 
   return (
     <>
