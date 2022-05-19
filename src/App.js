@@ -257,11 +257,26 @@ const doReverse =(a) =>{
     }
   }
   finalle = dash + finalle
-
-  return finalle
+  return parseInt(finalle) 
 }
 
-doReverse(-5976)
+// doReverse(-5976)
+  
+const mostWater = (a) => {
+  const index = []
+  for(let i = 1; i <= a.length;i++){
+    for(let j = 1; j <= a.length;j++){
+      if(a[i] < a[j]){
+       index.push(i * a[j]) 
+      }
+      
+    }
+  }
+  let refined = index.sort()
+  console.log(refined)
+}
+
+mostWater([1,8,6,2,5,4,8,3,7])
 
   return (
     <>
