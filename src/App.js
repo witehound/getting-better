@@ -77,15 +77,17 @@ function App() {
   //              if(nums[i] + nums[j] === target){
   //                 //  number.push[j]
   //                 //  number.push[i]
-  //                 console.log(nums[j], nums[i])
+  //                 // console.log(nums[j], nums[i])
   //                 console.log(j,i)
+  //                 return
   //              }
   //       }
   //     }
       
   // };
 
-  // twoSum([1,2,3,4], 5)
+  // twoSum([3,2,4], 6)
+
 // let output = []
 // let now
 //   var addTwoNumbers = function(l1, l2) {
@@ -257,10 +259,11 @@ const doReverse =(a) =>{
     }
   }
   finalle = dash + finalle
+  console.log(finalle)
   return parseInt(finalle) 
 }
 
-// doReverse(-5976)
+// doReverse(-123)
   
 const mostWater = (a) => {
   const index = []
@@ -277,6 +280,59 @@ const mostWater = (a) => {
 }
 
 // mostWater([1,8,6,2,5,4,8,3,7])
+
+let trapStart = {
+  index: '',
+  value: ''
+}
+
+let trapEnd = {
+  index: '',
+  value: ''
+}
+
+let tallestTrap
+
+const trapper = (a) => {
+  for(let i = 0; i < a.length; i++){
+     if( i <= 0){
+       if (a[i] > 0){
+         trapStart.index = i
+         trapStart.value = a[i]
+       }
+     }
+     if( i = a.length-1){
+      if (a[i] > 0){
+        trapEnd.index = i
+        trapEnd.value = a[i]
+      }
+
+     if(a[i] < a[i + 1] ){
+       tallestTrap = a[i]
+     }
+    }
+  }
+  console.log('trapstart',trapStart)
+  console.log('trapend',trapEnd)
+  console.log('tallest',tallestTrap)
+}
+
+// trapper([4,2,0,3,2,5])
+
+let reverseType = []
+const manualReverse= (a)=> {
+  let start = a.length - 1
+  console.log(start)
+  for( let i = start; i >= 0; i--){
+      reverseType.push(a[i])
+  }
+  console.log(reverseType)
+}
+
+// manualReverse([1,2,5])
+
+
+
 
   return (
     <>
