@@ -94,23 +94,37 @@ function App() {
 //     for(let i = 0 ; i < l1 ; i++){
 //         // now = l1[i] + l2[i]
 //         console.log(firstarray)
-        // output.push(now)
+//         output.push(now)
 //     }
-//     // console.log(output) 
+//     console.log(output) 
 // };
 
 // addTwoNumbers([2,4,3],[5,6,4])
 
-// let output = []
-// const addTwoNumbers = (l1,l2) => {
-//   console.log(l1,l2)
-//   for(let i = 0 ; i < l1.length ; i++){
-//      output.push(l1[i] + l2[i])
-//   }
-//   console.log(output.reverse())
-// }
+let output = []
+const addTwoNumbers = (l1,l2) => {
+  let track
+  let newAdd = 0
+  let toADD = 0
+  console.log(l1,l2)
+  for(let i = 0 ; i < (l1.length  > l2.length ? l1.length : l2.length); i++){
+    track = (l1[i] ? l1[i] : 0) +(l2[i] ? l2[i] : 0) + newAdd 
+    newAdd = 0
+    if (track > 9 ) {
+      toADD = track - 10
+      newAdd = 1
+      output.push(toADD)
+    }
+    if(track < 9){
+      toADD = 0
+      output.push(track)
+    }
+  }
+  
+  console.log(output)
+}
 
-// addTwoNumbers([2,4,3],[5,6,2])
+// 
 
 
 // let newArr = []
@@ -332,6 +346,20 @@ const manualReverse= (a)=> {
 // manualReverse([1,2,5])
 
 
+const higheestInArray = (a) => {
+  let highest = 0
+    for( let i of a){
+ 
+       if(i > i+1){
+         highest = i
+      }
+
+    }
+    
+    console.log(highest)
+}
+
+higheestInArray([10,1000,100])
 
 
   return (
