@@ -353,7 +353,7 @@ const higheestInArray = (a) => {
     }
     console.log(highest)
 }
-higheestInArray([10,1000,3000,100])
+// higheestInArray([10,1000,3000,100])
 
 
   return (
