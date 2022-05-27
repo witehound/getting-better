@@ -345,34 +345,53 @@ function App() {
 
   const numberToRoman = (a) => {
     let remiander = 0;
-    let other = a
-    let result = ''
+    let other = a;
+    let result = "";
     const romanInt = ["I", "V", "X", "L", "C", "D", "M"];
     const romanEquiv = [1, 5, 10, 50, 100, 500, 1000];
 
-    const geOther = (a) =>{
-      remiander = 0
+    const geOther = (a) => {
+      remiander = 0;
       for (let i = 0; i < romanEquiv.length; i++) {
         if (remiander <= 0) {
           if (a < romanEquiv[i]) {
-            remiander = romanEquiv[i-1];
-            result += romanInt[i-1]
-            other = a - remiander
+            remiander = romanEquiv[i - 1];
+            result += romanInt[i - 1];
+            other = a - remiander;
           }
         }
       }
-      if( other > 0){
-        geOther(other)
+      if (other > 0) {
+        geOther(other);
       }
-      
-    }
+    };
 
-    geOther(other)
+    geOther(other);
 
     console.log("result", result);
   };
 
-  numberToRoman(6);
+  // numberToRoman(6);
+
+  const romanToNumber = (a) => {
+    let target = a.split("");
+    let result = 0
+    const romanInt = ["I", "V", "X", "L", "C", "D", "M"];
+    const romanEquiv = [1, 5, 10, 50, 100, 500, 1000];
+
+    for (let i = 0; i < romanInt.length; i++) {
+      for (let j = 0; j < target.length; j++) {
+         if(target[j] === romanInt[i]){
+           console.log(target[i],romanInt[i])
+           result += romanEquiv[i]
+         }
+      }
+    }
+    console.log("target", target);
+    console.log("result", result);
+  };
+
+  romanToNumber("XX");
 
   return (
     <>
