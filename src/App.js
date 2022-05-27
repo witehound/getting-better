@@ -348,18 +348,12 @@ const manualReverse= (a)=> {
 
 const higheestInArray = (a) => {
   let highest = 0
-    for( let i of a){
- 
-       if(i > i+1){
-         highest = i
-      }
-
+    for( let i = 0; i < a.length; i++){
+      if(a[i] > a[i+1] ? a[i+1] : 0) highest = a[i]
     }
-    
     console.log(highest)
 }
-
-// higheestInArray([10,1000,1000, 1000])
+higheestInArray([10,1000,3000,100])
 
 
   return (
