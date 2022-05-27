@@ -375,23 +375,52 @@ function App() {
 
   const romanToNumber = (a) => {
     let target = a.split("");
-    let result = 0
+    let result = 0;
     const romanInt = ["I", "V", "X", "L", "C", "D", "M"];
     const romanEquiv = [1, 5, 10, 50, 100, 500, 1000];
 
     for (let i = 0; i < romanInt.length; i++) {
       for (let j = 0; j < target.length; j++) {
-         if(target[j] === romanInt[i]){
-           console.log(target[i],romanInt[i])
-           result += romanEquiv[i]
-         }
+        if (target[j] === romanInt[i]) {
+          console.log(target[i], romanInt[i]);
+          result += romanEquiv[i];
+        }
       }
     }
     console.log("target", target);
     console.log("result", result);
   };
 
-  romanToNumber("XX");
+  // romanToNumber("XX");
+
+  const longestCommonPractise = (a) => {
+    let major = [];
+    let setter;
+    let result = '';
+    for (let i = 0; i < a.length; i++) {
+      major.push(a[i].split(""));
+    }
+
+    for (let i = 0; i < major.length; i++) {
+      if (major[i + 1]) {
+        if (major[i].length > major[i + 1].length) {
+          setter = major[i].length;
+        }
+      }
+    }
+
+    for (let i = 0; i < setter; i++) {
+         if( major[0][i] === major[1][i] && major[1][i] === major[2][i] ){
+           console.log(major[i])
+           result += major[i][i]
+         }
+    }
+
+
+    console.log("rwsulr", result);
+  };
+
+  // longestCommonPractise(["flower", "flow", "flight"]);
 
   return (
     <>
