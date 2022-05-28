@@ -572,20 +572,19 @@ function App() {
 
   function staircase(n) {
     let result = [];
-    let hash = "#"
-    let newHash = ''
+    let hash = "#";
+    let newHash = "";
     for (let i = 0; i < n; i++) {
-      for (let j = 0; j < i+1; j++) {
-        newHash += hash
+      for (let j = 0; j < i + 1; j++) {
+        newHash += hash;
       }
-      result.push(newHash)
-      newHash = ''
+      result.push(newHash);
+      newHash = "";
     }
-    console.log(result)
+    console.log(result);
   }
 
-
-  staircase(6)
+  // staircase(6)
 
   const miniMaxSum = (arr) => {
     let lowest = 0;
@@ -608,6 +607,30 @@ function App() {
   };
 
   // miniMaxSum([5, 5, 5, 5, 5]);
+
+  function birthdayCakeCandles(candles) {
+    // Write your code here
+    let tallest = 0
+    let result = 0
+
+    for (let index = 0; index < candles.length; index++) {
+       if(candles[index + 1]){
+         if(candles[index] <= candles[index+1]){
+           tallest = candles[index+1]
+         }
+       }
+    }
+
+    for (let index = 0; index < candles.length; index++) {
+      if(tallest === candles[index]){
+         result++
+      }
+   }
+
+    console.log(result)
+  }
+
+  birthdayCakeCandles([3, 2, 1, 3]);
 
   return (
     <>
