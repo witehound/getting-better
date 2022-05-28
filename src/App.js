@@ -467,6 +467,7 @@ function App() {
     let saver = [];
     let subSaver = [];
     let truthSaver = []
+    let newtruthSaver = []
     let result = []
     const letters = [
       ["a", "b", "c"],
@@ -523,14 +524,10 @@ function App() {
         for (let k = 0; k < newTarget.length; k++) {
           if(newTarget[k] === forFirst[j] && truthSaver.length < forFirst.length){
             truthSaver.push(newTarget[k])
-            for (let l = 0; l < truthSaver.length; l++) {
-              // if( newTarget[k] !== truthSaver[l]) 
-              console.log(truthSaver)
-            }
-
           }
         }
       }
+
       console.log(truthSaver)
       if(truthSaver.length === forFirst.length){
          result.push(forFirst)
@@ -541,7 +538,57 @@ function App() {
     console.log(result);
   };
 
-  subStringPhoneNum(3569377, ["foo", "bar", "barz"]);
+  // subStringPhoneNum(3569377, ["foo", "bar", "barz"]);
+
+  function plusMinus(arr) {
+    // Write your code here
+    let counterP = 0
+    let counterN = 0
+    let counterZ = 0
+    let n = arr.length
+    for(let i = 0; i < n; i++){
+        if(arr[i] > 0){
+            counterP ++
+        }
+        if(arr[i] < 0){
+            counterN ++
+        }
+        if( arr[i] === 0){
+            counterZ ++
+        }
+    }
+
+    counterP = (counterP/n).toFixed(6)
+    counterN = (counterN/n).toFixed(6)
+    counterZ = (counterZ/n).toFixed(6)
+    
+    console.log(counterP,counterN,counterZ)
+}
+
+// plusMinus([-4, 3 ,-9 ,0 ,4 ,1])
+
+
+const miniMaxSum = (arr) => {
+  let lowest = 0
+  let highest = 0
+  let current = 0
+
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length; j++) {
+       if(arr[i] !== arr[j]){
+         current += arr[j]
+       }
+    }
+    if (lowest <= 0) lowest = current
+    if( highest <= 0) highest = current
+    if (lowest >= current) lowest = current
+    if(highest <= current) highest = current
+    console.log(lowest,highest)
+    current = 0
+  }
+}
+
+miniMaxSum([1, 2 ,3 ,4 ,5])
 
   return (
     <>
