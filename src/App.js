@@ -466,9 +466,9 @@ function App() {
   const subStringPhoneNum = (a, b) => {
     let saver = [];
     let subSaver = [];
-    let truthSaver = []
-    let newtruthSaver = []
-    let result = []
+    let truthSaver = [];
+    let newtruthSaver = [];
+    let result = [];
     const letters = [
       ["a", "b", "c"],
       ["d", "e", "f"],
@@ -516,25 +516,28 @@ function App() {
       }
       saver = saver.slice(ln);
     }
-   
+
     for (let i = 0; i < subSaver.length; i++) {
-      let forFirst = subSaver[i]
+      let forFirst = subSaver[i];
       for (let j = 0; j < forFirst.length; j++) {
-        console.log(forFirst[j])
+        console.log(forFirst[j]);
         for (let k = 0; k < newTarget.length; k++) {
-          if(newTarget[k] === forFirst[j] && truthSaver.length < forFirst.length){
-            truthSaver.push(newTarget[k])
+          if (
+            newTarget[k] === forFirst[j] &&
+            truthSaver.length < forFirst.length
+          ) {
+            truthSaver.push(newTarget[k]);
           }
         }
       }
 
-      console.log(truthSaver)
-      if(truthSaver.length === forFirst.length){
-         result.push(forFirst)
+      console.log(truthSaver);
+      if (truthSaver.length === forFirst.length) {
+        result.push(forFirst);
       }
-      truthSaver = []
+      truthSaver = [];
     }
-    
+
     console.log(result);
   };
 
@@ -542,53 +545,69 @@ function App() {
 
   function plusMinus(arr) {
     // Write your code here
-    let counterP = 0
-    let counterN = 0
-    let counterZ = 0
-    let n = arr.length
-    for(let i = 0; i < n; i++){
-        if(arr[i] > 0){
-            counterP ++
-        }
-        if(arr[i] < 0){
-            counterN ++
-        }
-        if( arr[i] === 0){
-            counterZ ++
-        }
+    let counterP = 0;
+    let counterN = 0;
+    let counterZ = 0;
+    let n = arr.length;
+    for (let i = 0; i < n; i++) {
+      if (arr[i] > 0) {
+        counterP++;
+      }
+      if (arr[i] < 0) {
+        counterN++;
+      }
+      if (arr[i] === 0) {
+        counterZ++;
+      }
     }
 
-    counterP = (counterP/n).toFixed(6)
-    counterN = (counterN/n).toFixed(6)
-    counterZ = (counterZ/n).toFixed(6)
-    
-    console.log(counterP,counterN,counterZ)
-}
+    counterP = (counterP / n).toFixed(6);
+    counterN = (counterN / n).toFixed(6);
+    counterZ = (counterZ / n).toFixed(6);
 
-// plusMinus([-4, 3 ,-9 ,0 ,4 ,1])
-
-
-const miniMaxSum = (arr) => {
-  let lowest = 0
-  let highest = 0
-  let current = 0
-
-  for (let i = 0; i < arr.length; i++) {
-    for (let j = 0; j < arr.length; j++) {
-       if(arr[i] !== arr[j]){
-         current += arr[j]
-       }
-    }
-    if (lowest <= 0) lowest = current
-    if( highest <= 0) highest = current
-    if (lowest >= current) lowest = current
-    if(highest <= current) highest = current
-    console.log(lowest,highest)
-    current = 0
+    console.log(counterP, counterN, counterZ);
   }
-}
 
-miniMaxSum([1, 2 ,3 ,4 ,5])
+  // plusMinus([-4, 3 ,-9 ,0 ,4 ,1])
+
+  function staircase(n) {
+    let result = [];
+    let hash = "#"
+    let newHash = ''
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < i+1; j++) {
+        newHash += hash
+      }
+      result.push(newHash)
+      newHash = ''
+    }
+    console.log(result)
+  }
+
+
+  staircase(6)
+
+  const miniMaxSum = (arr) => {
+    let lowest = 0;
+    let highest = 0;
+    let current = 0;
+
+    for (let i = 0; i < arr.length; i++) {
+      for (let j = 0; j < arr.length; j++) {
+        if (i !== j) {
+          current += arr[j];
+        }
+      }
+      if (lowest <= 0) lowest = current;
+      if (highest <= 0) highest = current;
+      if (lowest >= current) lowest = current;
+      if (highest <= current) highest = current;
+      console.log(lowest, highest);
+      current = 0;
+    }
+  };
+
+  // miniMaxSum([5, 5, 5, 5, 5]);
 
   return (
     <>
