@@ -1,3 +1,4 @@
+import { SecurityRounded } from "@material-ui/icons";
 import "./App.css";
 import Product from "./case.js";
 
@@ -396,7 +397,7 @@ function App() {
   const longestCommonPractise = (a) => {
     let major = [];
     let setter;
-    let result = '';
+    let result = "";
     for (let i = 0; i < a.length; i++) {
       major.push(a[i].split(""));
     }
@@ -410,17 +411,137 @@ function App() {
     }
 
     for (let i = 0; i < setter; i++) {
-         if( major[0][i] === major[1][i] && major[1][i] === major[2][i] ){
-           console.log(major[i])
-           result += major[i][i]
-         }
+      if (major[0][i] === major[1][i] && major[1][i] === major[2][i]) {
+        console.log(major[i]);
+        result += major[i][i];
+      }
     }
-
 
     console.log("rwsulr", result);
   };
 
   // longestCommonPractise(["flower", "flow", "flight"]);
+
+  const phoneCombo = (a) => {
+    let result = [];
+    let saver = [];
+    let first = [];
+    let second = [];
+    const numbers = [2, 3, 4, 5, 6, 7, 8, 9];
+    const letters = [
+      ["a", "b", "c"],
+      ["d", "e", "f"],
+      ["g", "h", "i"],
+      ["j", "k", "l"],
+      ["m", "n", "o"],
+      ["p", "q", "r", "s"],
+      ["t", "u", "v"],
+      ["w", "x", "y", "z"],
+    ];
+
+    let splitted = a.split("");
+    console.log(splitted);
+
+    for (let i = 0; i < splitted.length; i++) {
+      saver.push(letters[i]);
+    }
+
+    for (let i = 0; i < saver.length; i++) {
+      for (let j = 0; j < saver[i].length; j++) {
+        first.push(saver[i][j]);
+        second.push(saver[i][j]);
+      }
+    }
+
+    for (let i = 0; i < first.length; i++) {
+      for (let j = 0; j < saver.length; j++) {}
+    }
+
+    console.log("first", first);
+    console.log("second", second);
+  };
+
+  // phoneCombo("23");
+
+  const subStringPhoneNum = (a, b) => {
+    let saver = [];
+    let subSaver = [];
+    let truthSaver = []
+    let result = []
+    const letters = [
+      ["a", "b", "c"],
+      ["d", "e", "f"],
+      ["g", "h", "i"],
+      ["j", "k", "l"],
+      ["m", "n", "o"],
+      ["p", "q", "r", "s"],
+      ["t", "u", "v"],
+      ["w", "x", "y", "z"],
+    ];
+    const numbers = [2, 3, 4, 5, 6, 7, 8, 9];
+
+    let target = a.toString().split("");
+    let newTarget = [];
+    for (let i = 0; i < target.length; i++) {
+      newTarget.push(parseInt(target[i]));
+    }
+
+    for (let i = 0; i < b.length; i++) {
+      let sample = b[i].split("");
+      let ln = sample.length;
+      for (let j = 0; j < ln; j++) {
+        for (let k = 0; k < letters.length; k++) {
+          let kay = letters[k];
+          let kayLn = kay.length;
+          for (let l = 0; l < kayLn; l++) {
+            if (sample[j] === kay[l]) {
+              saver.push(numbers[k]);
+            }
+          }
+        }
+      }
+    }
+
+    console.log(newTarget);
+
+    for (let i = 0; i < b.length; i++) {
+      let sample = b[i].split("");
+      let ln = sample.length;
+      subSaver.push([]);
+      for (let j = 0; j < ln; j++) {
+        if (subSaver[i].length < b[i].length) {
+          subSaver[i].push(saver[j]);
+        }
+      }
+      saver = saver.slice(ln);
+    }
+   
+    for (let i = 0; i < subSaver.length; i++) {
+      let forFirst = subSaver[i]
+      for (let j = 0; j < forFirst.length; j++) {
+        console.log(forFirst[j])
+        for (let k = 0; k < newTarget.length; k++) {
+          if(newTarget[k] === forFirst[j] && truthSaver.length < forFirst.length){
+            truthSaver.push(newTarget[k])
+            for (let l = 0; l < truthSaver.length; l++) {
+              // if( newTarget[k] !== truthSaver[l]) 
+              console.log(truthSaver)
+            }
+
+          }
+        }
+      }
+      console.log(truthSaver)
+      if(truthSaver.length === forFirst.length){
+         result.push(forFirst)
+      }
+      truthSaver = []
+    }
+    
+    console.log(result);
+  };
+
+  subStringPhoneNum(3569377, ["foo", "bar", "barz"]);
 
   return (
     <>
