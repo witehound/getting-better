@@ -727,16 +727,54 @@ function App() {
         a += v1;
         b += v2;
       }
-      if( a === b){
-        console.log('YES')
-        return 'YES'
+      if (a === b) {
+        console.log("YES");
+        return "YES";
       }
     }
-    console.log('NO')
-    return 'NO'
+    console.log("NO");
+    return "NO";
   }
 
-  kangaroo(2, 1, 1, 2);
+  // kangaroo(2, 1, 1, 2);
+
+  function getTotalX(a, b) {
+    // Write your code here
+    let differnce = b[0] - a[a.length - 1];
+    let first = a[a.length - 1];
+    let combined = [];
+    let count = 0;
+    let result = 0;
+    let tester = [];
+    tester.push(first);
+    for (let i = 0; i < differnce / a[a.length - 1] - 1; i++) {
+      first += a[a.length - 1];
+      tester.push(first);
+    }
+
+    for (let i = 0; i < a.length; i++) {
+      combined.push(a[i]);
+    }
+
+    for (let i = 0; i < b.length; i++) {
+      combined.push(b[i]);
+    }
+
+
+    for (let i = 0; i < tester.length; i++) {
+      for (let j = 0; j < combined.length; j++) {
+        if(tester[i] % combined[j] === 0) count++
+      }
+      if (count === combined.length) result++
+      count = 0
+    }
+
+    console.log(result);
+    console.log(tester);
+  }
+
+  getTotalX([2, 6], [24, 36]);
+
   return (
     <>
       <button className="App" onClick={Product.test}>
