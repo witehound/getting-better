@@ -610,27 +610,72 @@ function App() {
 
   function birthdayCakeCandles(candles) {
     // Write your code here
-    let tallest = 0
-    let result = 0
+    let tallest = 0;
+    let result = 0;
 
     for (let index = 0; index < candles.length; index++) {
-       if(candles[index + 1]){
-         if(candles[index] <= candles[index+1]){
-           tallest = candles[index+1]
-         }
-       }
+      if (candles[index] >= tallest) {
+        tallest = candles[index];
+      }
     }
 
     for (let index = 0; index < candles.length; index++) {
-      if(tallest === candles[index]){
-         result++
+      if (tallest === candles[index]) {
+        result++;
       }
-   }
+    }
 
-    console.log(result)
+    console.log(result);
   }
 
-  birthdayCakeCandles([3, 2, 1, 3]);
+  // birthdayCakeCandles([82 , 49 , 82 , 82 , 41, 82, 15, 63, 38, 25]);
+
+  function timeConversion(s) {
+    // Write your code here
+    let splitted = s.split("");
+    let nLength = splitted.length;
+    let timeArr = [];
+    let time = "";
+    let prefix = "";
+    let newTime = 0;
+    let displayTime = "";
+
+    timeArr.push(splitted[nLength - 2], splitted[nLength - 1]);
+    prefix += splitted[0].toString() + splitted[1].toString();
+    prefix = parseInt(prefix);
+
+    for (let index = 0; index < timeArr.length; index++) {
+      time += timeArr[index];
+    }
+
+    if (time === "PM") {
+      if (prefix < 12) {
+        newTime = prefix + 12;
+      }
+      if (prefix > 12) {
+        newTime = prefix;
+      }
+      if( prefix === 12){
+        newTime = 12
+      }
+    }
+
+    if (time === "AM") {
+      if (prefix > 12) {
+        newTime = prefix - 12;
+      }
+      if (prefix < 12) {
+        newTime = prefix;
+      }
+    }
+
+    let helpPrifix = newTime < 9 ? "0" : "";
+    displayTime = helpPrifix + newTime.toString() + s.slice(2,-2)
+
+    console.log(displayTime);
+  }
+
+  timeConversion("12:01:00PM");
 
   return (
     <>
