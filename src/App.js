@@ -773,7 +773,34 @@ function App() {
     console.log(tester);
   }
 
-  getTotalX([2, 6], [24, 36]);
+  // getTotalX([2, 6], [24, 36]);
+
+  function breakingRecords(scores) {
+    // Write your code here
+    let highest = []
+    let lowest = []
+    let trackhigh = 0
+    let tracklow = 0
+    let highchange = -1
+    let lowchange = -1
+
+    for(let i = 0; i < scores.length;i++){
+      if(trackhigh <= 0 || trackhigh < scores[i]) {
+        trackhigh = scores[i]
+        highchange++
+      }
+      highest.push(trackhigh)
+      if(tracklow <= 0 || tracklow > scores[i]){
+        tracklow = scores[i]
+        lowchange++
+      } 
+      lowest.push(tracklow)
+    }
+
+    console.log(highchange,lowchange)
+}
+
+breakingRecords([3 ,4 ,21 ,36 ,10 ,28 ,35 ,5 ,24 ,42])
 
   return (
     <>
