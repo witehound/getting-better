@@ -712,12 +712,31 @@ function App() {
         orangecount++;
       }
     }
-    console.log(applefinal, orangefinal)
-    console.log(applecount, orangecount);
+    console.log(applecount);
+    console.log(orangecount);
   }
 
-  countApplesAndOranges(2, 3, 1, 5, [2], [-1]);
+  // countApplesAndOranges(2, 3, 1, 5, [2], [-1]);
 
+  function kangaroo(x1, v1, x2, v2) {
+    // Write your code here
+    let a = x1;
+    let b = x2;
+    for (let i = 0; i <= 10000; i++) {
+      if (a !== b) {
+        a += v1;
+        b += v2;
+      }
+      if( a === b){
+        console.log('YES')
+        return 'YES'
+      }
+    }
+    console.log('NO')
+    return 'NO'
+  }
+
+  kangaroo(2, 1, 1, 2);
   return (
     <>
       <button className="App" onClick={Product.test}>
