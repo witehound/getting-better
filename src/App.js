@@ -655,8 +655,8 @@ function App() {
       if (prefix > 12) {
         newTime = prefix;
       }
-      if( prefix === 12){
-        newTime = 12
+      if (prefix === 12) {
+        newTime = 12;
       }
     }
 
@@ -670,12 +670,53 @@ function App() {
     }
 
     let helpPrifix = newTime < 9 ? "0" : "";
-    displayTime = helpPrifix + newTime.toString() + s.slice(2,-2)
+    displayTime = helpPrifix + newTime.toString() + s.slice(2, -2);
 
     console.log(displayTime);
   }
 
-  timeConversion("12:01:00PM");
+  // timeConversion("12:01:00PM");
+
+  function countApplesAndOranges(s, t, a, b, apples, oranges) {
+    // Write your code here
+    let applediff = s - a;
+    let orangediff = b - t;
+    let applefinal = [];
+    let orangefinal = [];
+    let applecount = 0;
+    let orangecount = 0;
+
+    for (let index = 0; index < apples.length; index++) {
+      applefinal.push(a + apples[index]);
+    }
+
+    for (let index = 0; index < oranges.length; index++) {
+      orangefinal.push(b + oranges[index]);
+    }
+
+    let longest = applefinal.length;
+    console.log(longest);
+
+    if (applefinal.length !== orangefinal.length) {
+      longest =
+        applefinal.length > orangefinal.length
+          ? applefinal.length
+          : orangefinal.length;
+    }
+
+    for (let i = 0; i < longest; i++) {
+      if (applefinal[i] >= s && applefinal[i] <= t) {
+        applecount++;
+      }
+      if (orangefinal[i] >= s && orangefinal[i] <= t) {
+        orangecount++;
+      }
+    }
+    console.log(applefinal, orangefinal)
+    console.log(applecount, orangecount);
+  }
+
+  countApplesAndOranges(2, 3, 1, 5, [2], [-1]);
 
   return (
     <>
