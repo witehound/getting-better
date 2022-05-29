@@ -760,13 +760,12 @@ function App() {
       combined.push(b[i]);
     }
 
-
     for (let i = 0; i < tester.length; i++) {
       for (let j = 0; j < combined.length; j++) {
-        if(tester[i] % combined[j] === 0) count++
+        if (tester[i] % combined[j] === 0) count++;
       }
-      if (count === combined.length) result++
-      count = 0
+      if (count === combined.length) result++;
+      count = 0;
     }
 
     console.log(result);
@@ -777,30 +776,56 @@ function App() {
 
   function breakingRecords(scores) {
     // Write your code here
-    let highest = []
-    let lowest = []
-    let trackhigh = 0
-    let tracklow = 0
-    let highchange = -1
-    let lowchange = -1
+    let highest = [];
+    let lowest = [];
+    let trackhigh = 0;
+    let tracklow = 0;
+    let highchange = -1;
+    let lowchange = -1;
 
-    for(let i = 0; i < scores.length;i++){
-      if(trackhigh <= 0 || trackhigh < scores[i]) {
-        trackhigh = scores[i]
-        highchange++
+    for (let i = 0; i < scores.length; i++) {
+      if (trackhigh <= 0 || trackhigh < scores[i]) {
+        trackhigh = scores[i];
+        highchange++;
       }
-      highest.push(trackhigh)
-      if(tracklow <= 0 || tracklow > scores[i]){
-        tracklow = scores[i]
-        lowchange++
-      } 
-      lowest.push(tracklow)
+      highest.push(trackhigh);
+      if (tracklow <= 0 || tracklow > scores[i]) {
+        tracklow = scores[i];
+        lowchange++;
+      }
+      lowest.push(tracklow);
     }
 
-    console.log(highchange,lowchange)
-}
+    console.log(highchange, lowchange);
+  }
 
-breakingRecords([3 ,4 ,21 ,36 ,10 ,28 ,35 ,5 ,24 ,42])
+  // breakingRecords([3 ,4 ,21 ,36 ,10 ,28 ,35 ,5 ,24 ,42])
+
+  function birthday(s, d, m) {
+    // Write your code here
+    let num = s;
+    let nums = [];
+    let count = 0;
+    const add = (arr) => arr.reduce((a, b) => a + b, 0);
+    for (let i = 0; i < s.length; i++) {
+      let arrayElement = num.slice(0 + i, m + i);
+      nums.push(arrayElement);
+    }
+
+    if (num.length === 1 && nums[0] === d) {
+      count++;
+    } else {
+      nums.forEach((el) => {
+        if (add(el) === d) {
+          count++;
+        }
+      });
+    }
+
+    console.log(count);
+  }
+
+  birthday([1, 2, 1, 3, 2], 3, 2);
 
   return (
     <>
