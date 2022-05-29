@@ -825,7 +825,11 @@ function App() {
     console.log(count);
   }
 
-  birthday([1, 2, 1, 3, 2], 3, 2);
+  // birthday([1, 2, 1, 3, 2], 3, 2);
+
+  git 
+
+  // divisibleSumPairs(6, 3, [1, 3, 2, 6, 1, 2]);
 
   return (
     <>
