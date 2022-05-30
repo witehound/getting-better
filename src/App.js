@@ -827,9 +827,54 @@ function App() {
 
   // birthday([1, 2, 1, 3, 2], 3, 2);
 
-  git 
+  function divisibleSumPairs(n, k, ar) {
+    let count = 0;
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < n; j++) {
+        if (i < j) {
+          if ((ar[i] + ar[j]) % k === 0) count++;
+        }
+      }
+    }
+    console.log(count);
+  }
 
   // divisibleSumPairs(6, 3, [1, 3, 2, 6, 1, 2]);
+
+  function migratoryBirds(arr) {
+    // Write your code here
+
+    let highest = []
+    let count = 0
+    let high = 0
+
+    let tracker = arr.filter((element, index, array)=> {
+      return array.indexOf(element) === index
+    })
+
+    for(let i = 0; i <tracker.length; i++){
+      for(let j = 0; j < arr.length; j++){
+        if(tracker[i] === arr[j]) {
+          count ++
+        }
+      }
+      highest.push(count)
+      count = 0
+    }
+
+    for(let i = 0; i < highest.length; i++){
+      
+      if(highest[i] > high ){
+         high = tracker[i]
+      }
+
+      if(high > 0) high = highest[i]
+    }
+
+    console.log(high);
+  }
+
+  migratoryBirds([1, 4, 4, 4, 5, 3]);
 
   return (
     <>
