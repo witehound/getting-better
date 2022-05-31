@@ -988,14 +988,61 @@ function App() {
           count++;
         }
       }
-      count = count - (count % 2)
-      if (count % 2 === 0 ) pair = pair + (count / 2)
+      count = count - (count % 2);
+      if (count % 2 === 0) pair = pair + count / 2;
       count = 0;
     }
-    console.log(pair)
+    console.log(pair);
   }
 
-  sockMerchant(7, [1,2,1,2,1,3,2]);
+  // sockMerchant(7, [1,2,1,2,1,3,2]);
+
+  function pageCount(n, p) {
+    // Write your code here
+    //have a variable to backtrack
+    //have a varibale for flip
+    //flip on starts when index > 0
+    //if index > 0 track increments and when track === 2 flip increments
+    //if p % 2 == 0 do p + 1 for control
+    //reverse function fpr from back if p % 2 == 1 do p + 1
+    let backtrack = 0;
+    let flip = 0;
+    let high = 0;
+    if( n === p) return 0
+    if (p % 2 === 0) p++;
+    for (let i = 0; i < n; i++) {
+      if (p >= i + 1) {
+        if (i !== 0) {
+          backtrack++;
+          if (backtrack === 2) {
+            flip++;
+            backtrack = 0;
+          }
+        }
+      }
+    }
+
+    high = flip;
+    flip = 0;
+
+    if (p % 2 === 1) p--;
+    for (let i = n; i > 1; i--) {
+      if (i >= p) {
+        if (i !== n) {
+          backtrack++;
+          if (backtrack === 2) {
+            flip++;
+            backtrack = 0;
+          }
+        }
+      }
+    }
+
+    if (high >= flip) high = flip;
+    return high;
+  }
+
+  console.log(pageCount(5,5));
 
   return (
     <>
