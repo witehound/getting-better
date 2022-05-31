@@ -1,4 +1,4 @@
-import { SecurityRounded } from "@material-ui/icons";
+import { CompareArrowsOutlined, SecurityRounded } from "@material-ui/icons";
 import "./App.css";
 import Product from "./case.js";
 
@@ -884,18 +884,32 @@ function App() {
     g: 3,
   };
 
-  const str = "abcebc";
+  const strForHash = "abcebc";
   let hasher = {};
 
-  for (let s of str) {
+  for (let s of strForHash) {
     hasher[s] += 1;
-    console.log(alpha[s]);
     if (!hasher[s]) {
       hasher[s] = 1;
     }
   }
 
-  console.log(hasher);
+  // console.log(hasher);
+
+
+  const coinStack = (a) =>  {
+    let count = 0
+    let result = 0
+    let sum = 0
+    let tracker = 0
+
+    for( let i = 0; i < a; i++){
+
+    }
+    // return count
+  }
+
+  console.log(coinStack(10))
 
   return (
     <>
