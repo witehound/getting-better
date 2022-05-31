@@ -963,11 +963,39 @@ function App() {
       if (i !== bill[1]) sum += k[i];
     }
     cost = sum / 2;
-    if(b === cost ) return `Bon Appetit`
-    if (b > cost || b < cost) return b - cost
+    if (b === cost) return `Bon Appetit`;
+    if (b > cost || b < cost) return b - cost;
   }
 
-  console.log(bonAppetit([4, 1], [3, 10, 2, 9], 12));
+  // console.log(bonAppetit([4, 1], [3, 10, 2, 9], 7));
+
+  function sockMerchant(n, ar) {
+    // Write your code here
+    //filter array with filter
+    //for each i filter and same ccount
+    //check is count % 2 = 0 if yes increase count of piar
+    let count = 0;
+    let pair = 0;
+    let filtered = [];
+
+    filtered = ar.filter((a, b, c) => {
+      return c.indexOf(a) === b;
+    });
+
+    for (let v of filtered) {
+      for (let s of ar) {
+        if (v === s) {
+          count++;
+        }
+      }
+      count = count - (count % 2)
+      if (count % 2 === 0 ) pair = pair + (count / 2)
+      count = 0;
+    }
+    console.log(pair)
+  }
+
+  sockMerchant(7, [1,2,1,2,1,3,2]);
 
   return (
     <>
