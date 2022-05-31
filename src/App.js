@@ -843,11 +843,11 @@ function App() {
 
   function migratoryBirds(arr) {
     // Write your code here
-    let result = 0
+    let result = 0;
     let highest = [];
     let count = 0;
     let high = 0;
-    let hightrack = 0
+    let hightrack = 0;
 
     let tracker = arr.filter((element, index, array) => {
       return array.indexOf(element) === index;
@@ -866,29 +866,27 @@ function App() {
     for (let i = 0; i < highest.length; i++) {
       if (high <= 0) {
         high = highest[i];
-        hightrack = tracker[i]
+        hightrack = tracker[i];
       }
-      if( highest[i] >= high){
-        high = highest[i]
-        hightrack = tracker[i]
+      if (highest[i] >= high) {
+        high = highest[i];
+        hightrack = tracker[i];
       }
     }
 
-
-
     for (let i = 0; i < highest.length; i++) {
-      if( highest[i] === high ) {
-        if(result<= 0) result = tracker[i]
-        if( tracker[i] <= result){
-          result = tracker[i]
+      if (highest[i] === high) {
+        if (result <= 0) result = tracker[i];
+        if (tracker[i] <= result) {
+          result = tracker[i];
         }
       }
     }
 
-    console.log(result)
+    return result;
   }
 
-  migratoryBirds([1, 1, 1,1,4, 4, 4, 5, 5, 5,5 ,3]);
+  // migratoryBirds([1, 1, 1,1,4, 4, 4, 5, 5, 5,5 ,3]);
 
   const alpha = {
     a: 1,
@@ -930,10 +928,36 @@ function App() {
     if (a < sum) tracker = count - 2;
     if ((a = sum)) tracker = count - 1;
 
-    console.log(tracker)
+    console.log(tracker);
   };
 
   // coinStack(6);
+
+  function dayOfProgrammer(year) {
+   if ( year === 1918){
+     return `26.09.${year}`
+   }
+
+   else if ( year >= 1919){
+     if(year % 400 === 0 || ((year % 4 === 0) && (year % 100 !== 100))) {
+        return `12.09.${year}`
+     }
+     else{
+       return `13.09.${year}`
+     }
+   }
+
+   if(year <= 1917){
+     if( year % 4 === 0){
+      return `12.09.${year}`
+     }
+     else{
+      return `13.09.${year}`
+     }
+   }
+  }
+
+  dayOfProgrammer(2100)
 
   return (
     <>
