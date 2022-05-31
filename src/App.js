@@ -843,10 +843,11 @@ function App() {
 
   function migratoryBirds(arr) {
     // Write your code here
-
+    let result = 0
     let highest = [];
     let count = 0;
     let high = 0;
+    let hightrack = 0
 
     let tracker = arr.filter((element, index, array) => {
       return array.indexOf(element) === index;
@@ -863,17 +864,31 @@ function App() {
     }
 
     for (let i = 0; i < highest.length; i++) {
-      if (highest[i] > high) {
-        high = tracker[i];
+      if (high <= 0) {
+        high = highest[i];
+        hightrack = tracker[i]
       }
-
-      if (high > 0) high = highest[i];
+      if( highest[i] >= high){
+        high = highest[i]
+        hightrack = tracker[i]
+      }
     }
 
-    // console.log(high);
+
+
+    for (let i = 0; i < highest.length; i++) {
+      if( highest[i] === high ) {
+        if(result<= 0) result = tracker[i]
+        if( tracker[i] <= result){
+          result = tracker[i]
+        }
+      }
+    }
+
+    console.log(result)
   }
 
-  // migratoryBirds([1, 4, 4, 4, 5, 3]);
+  migratoryBirds([1, 1, 1,1,4, 4, 4, 5, 5, 5,5 ,3]);
 
   const alpha = {
     a: 1,
@@ -907,7 +922,6 @@ function App() {
       //ccount is 2 and sum is 3 ->  sum + new count
       //count is 3 and sum is 6 ->  sum + new count
       //count is 4 and sum is 10 -> sum + new count
-
       if (sum <= a) {
         count++;
         sum = sum + count;
@@ -919,7 +933,7 @@ function App() {
     console.log(tracker)
   };
 
-  coinStack(6);
+  // coinStack(6);
 
   return (
     <>
