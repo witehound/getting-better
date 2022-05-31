@@ -958,19 +958,16 @@ function App() {
   function bonAppetit(bill, k, b) {
     let sum = 0;
     let cost = 0;
-    // Write your code here
-    //bill[1] = price to be excluded
+
     for (let i = 0; i < bill[0]; i++) {
       if (i !== bill[1]) sum += k[i];
     }
-    // cost = sum  bill - 1
     cost = sum / 2;
-    //if b === sum return Bon Appetit
-    //if b > \\ < sum returm b - sum
-    console.log("sum", cost);
+    if(b === cost ) return `Bon Appetit`
+    if (b > cost || b < cost) return b - cost
   }
 
-  bonAppetit([4, 1], [3, 10, 2, 9], 12);
+  console.log(bonAppetit([4, 1], [3, 10, 2, 9], 12));
 
   return (
     <>
