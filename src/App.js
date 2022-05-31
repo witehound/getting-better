@@ -844,37 +844,58 @@ function App() {
   function migratoryBirds(arr) {
     // Write your code here
 
-    let highest = []
-    let count = 0
-    let high = 0
+    let highest = [];
+    let count = 0;
+    let high = 0;
 
-    let tracker = arr.filter((element, index, array)=> {
-      return array.indexOf(element) === index
-    })
+    let tracker = arr.filter((element, index, array) => {
+      return array.indexOf(element) === index;
+    });
 
-    for(let i = 0; i <tracker.length; i++){
-      for(let j = 0; j < arr.length; j++){
-        if(tracker[i] === arr[j]) {
-          count ++
+    for (let i = 0; i < tracker.length; i++) {
+      for (let j = 0; j < arr.length; j++) {
+        if (tracker[i] === arr[j]) {
+          count++;
         }
       }
-      highest.push(count)
-      count = 0
+      highest.push(count);
+      count = 0;
     }
 
-    for(let i = 0; i < highest.length; i++){
-      
-      if(highest[i] > high ){
-         high = tracker[i]
+    for (let i = 0; i < highest.length; i++) {
+      if (highest[i] > high) {
+        high = tracker[i];
       }
 
-      if(high > 0) high = highest[i]
+      if (high > 0) high = highest[i];
     }
 
-    console.log(high);
+    // console.log(high);
   }
 
-  migratoryBirds([1, 4, 4, 4, 5, 3]);
+  // migratoryBirds([1, 4, 4, 4, 5, 3]);
+
+  const alpha = {
+    a: 1,
+    b: 2,
+    c: 3,
+    e: 1,
+    f: 2,
+    g: 3,
+  };
+
+  const str = "abcebc";
+  let hasher = {};
+
+  for (let s of str) {
+    hasher[s] += 1;
+    console.log(alpha[s]);
+    if (!hasher[s]) {
+      hasher[s] = 1;
+    }
+  }
+
+  console.log(hasher);
 
   return (
     <>
