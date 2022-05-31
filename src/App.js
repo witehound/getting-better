@@ -896,20 +896,30 @@ function App() {
 
   // console.log(hasher);
 
+  const coinStack = (a) => {
+    let count = 0;
+    let result = 0;
+    let sum = 0;
+    let tracker = 0;
+    for (let i = 0; i < a; i++) {
+      // if ( a <= sum )
+      //count is 1 and sum is 1
+      //ccount is 2 and sum is 3 ->  sum + new count
+      //count is 3 and sum is 6 ->  sum + new count
+      //count is 4 and sum is 10 -> sum + new count
 
-  const coinStack = (a) =>  {
-    let count = 0
-    let result = 0
-    let sum = 0
-    let tracker = 0
-
-    for( let i = 0; i < a; i++){
-
+      if (sum <= a) {
+        count++;
+        sum = sum + count;
+      }
     }
-    // return count
-  }
+    if (a < sum) tracker = count - 2;
+    if ((a = sum)) tracker = count - 1;
 
-  console.log(coinStack(10))
+    console.log(tracker)
+  };
+
+  coinStack(6);
 
   return (
     <>
