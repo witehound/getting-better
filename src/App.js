@@ -934,30 +934,43 @@ function App() {
   // coinStack(6);
 
   function dayOfProgrammer(year) {
-   if ( year === 1918){
-     return `26.09.${year}`
-   }
+    if (year === 1918) {
+      return `26.09.${year}`;
+    } else if (year >= 1919) {
+      if (year % 400 === 0 || (year % 4 === 0 && year % 100 !== 100)) {
+        return `12.09.${year}`;
+      } else {
+        return `13.09.${year}`;
+      }
+    }
 
-   else if ( year >= 1919){
-     if(year % 400 === 0 || ((year % 4 === 0) && (year % 100 !== 100))) {
-        return `12.09.${year}`
-     }
-     else{
-       return `13.09.${year}`
-     }
-   }
-
-   if(year <= 1917){
-     if( year % 4 === 0){
-      return `12.09.${year}`
-     }
-     else{
-      return `13.09.${year}`
-     }
-   }
+    if (year <= 1917) {
+      if (year % 4 === 0) {
+        return `12.09.${year}`;
+      } else {
+        return `13.09.${year}`;
+      }
+    }
   }
 
-  dayOfProgrammer(2100)
+  // dayOfProgrammer(2100)
+
+  function bonAppetit(bill, k, b) {
+    let sum = 0;
+    let cost = 0;
+    // Write your code here
+    //bill[1] = price to be excluded
+    for (let i = 0; i < bill[0]; i++) {
+      if (i !== bill[1]) sum += k[i];
+    }
+    // cost = sum  bill - 1
+    cost = sum / 2;
+    //if b === sum return Bon Appetit
+    //if b > \\ < sum returm b - sum
+    console.log("sum", cost);
+  }
+
+  bonAppetit([4, 1], [3, 10, 2, 9], 12);
 
   return (
     <>
