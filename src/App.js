@@ -1050,32 +1050,46 @@ function App() {
     // if first letter = d set valley = 1
     let uphill = 0;
     let downhill = 0;
-    let valley = 0
+    let valley = 0;
 
     for (let s of path) {
-
-      if( (uphill === 0 && downhill === 0) && s === "D"){
-        valley++
+      if (uphill === 0 && downhill === 0 && s === "D") {
+        valley++;
       }
 
-      if( s === "D"){
-        downhill++
-        uphill--
+      if (s === "D") {
+        downhill++;
+        uphill--;
       }
-      if(s === "U"){
-        uphill++
-        downhill--
-      }
-
-      if( uphill === 0 && downhill === 0) {
-
+      if (s === "U") {
+        uphill++;
+        downhill--;
       }
     }
 
-    return valley
+    return valley;
   }
 
-  console.log(countingValleys(8, "UDDDUDUU"));
+  // console.log(countingValleys(8, "UDDDUDUU"));
+
+  function getMoneySpent(keyboards, drives, b) {
+    //
+    let res = 0;
+
+    for (let d of keyboards) {
+      for (let a of drives) {
+        if ((a + d ) <= b) {
+          if( (a + d) >= res) res = a + d
+        }
+      }
+    }
+
+    if (res === 0) return -1
+
+    return res
+  }
+
+  // console.log(getMoneySpent([3,1], [5,2,8], 10));
 
   return (
     <>
