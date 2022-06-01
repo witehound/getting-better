@@ -1008,7 +1008,7 @@ function App() {
     let backtrack = 0;
     let flip = 0;
     let high = 0;
-    if( n === p) return 0
+    if (n === p) return 0;
     if (p % 2 === 0) p++;
     for (let i = 0; i < n; i++) {
       if (p >= i + 1) {
@@ -1042,7 +1042,40 @@ function App() {
     return high;
   }
 
-  console.log(pageCount(5,5));
+  // console.log(pageCount(5,5));
+  function countingValleys(steps, path) {
+    // Write your code here
+    //thinking of having a tracker of a positive and negative a cycle completes when they equal zero
+    // if statment for 0 and 0
+    // if first letter = d set valley = 1
+    let uphill = 0;
+    let downhill = 0;
+    let valley = 0
+
+    for (let s of path) {
+
+      if( (uphill === 0 && downhill === 0) && s === "D"){
+        valley++
+      }
+
+      if( s === "D"){
+        downhill++
+        uphill--
+      }
+      if(s === "U"){
+        uphill++
+        downhill--
+      }
+
+      if( uphill === 0 && downhill === 0) {
+
+      }
+    }
+
+    return valley
+  }
+
+  console.log(countingValleys(8, "UDDDUDUU"));
 
   return (
     <>
