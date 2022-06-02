@@ -1065,12 +1065,16 @@ function App() {
         uphill++;
         downhill--;
       }
+      console.log("s", s);
+      console.log("uphill", uphill);
+      console.log("downhill", downhill);
+      console.log("valley", valley);
     }
 
-    return valley;
+    // return valley;
   }
 
-  // console.log(countingValleys(8, "UDDDUDUU"));
+  // console.log(countingValleys(8, "UDDDUDUUDDUUD"));
 
   function getMoneySpent(keyboards, drives, b) {
     //
@@ -1078,18 +1082,63 @@ function App() {
 
     for (let d of keyboards) {
       for (let a of drives) {
-        if ((a + d ) <= b) {
-          if( (a + d) >= res) res = a + d
+        if (a + d <= b) {
+          if (a + d >= res) res = a + d;
         }
       }
     }
 
-    if (res === 0) return -1
+    if (res === 0) return -1;
 
-    return res
+    return res;
   }
 
   // console.log(getMoneySpent([3,1], [5,2,8], 10));
+
+  function catAndMouse(x, y, z) {
+    //for x run a function on y and z
+    //function goes like check if cat 1 l > mouse c l to know the proper negagting
+    //repaet for cat 2
+    //save
+    let dis = 0;
+    let temp = 0;
+    let resI = 0;
+
+    const getLoc = (a) => {
+      for (let b = 0; b < a.length - 1; b++) {
+        if (b !== a.length - 1) {
+          temp = a[2] > a[b] ? a[2] - a[b] : a[b] - a[2];
+          if (dis === 0) {
+            dis = temp;
+            resI = b;
+            console.log("changed this");
+            break;
+          } else if (dis === temp) {
+            dis = temp;
+            resI = b;
+            console.log("changed thatt");
+            break;
+          } else {
+            resI = 2;
+            break;
+          }
+          // if (temp === dis) return "Mouse C";
+        }
+        console.log(temp, "temp", dis, "dis");
+      }
+      console.log(resI);
+
+      dis = 0;
+      if (resI === 0) console.log("Cat A");
+      if (resI === 1) console.log("Cat B");
+      if (resI === 2) console.log("Mouse C");
+    };
+
+    getLoc(y);
+    // getLoc(z);
+  }
+
+  catAndMouse(2, [1, 3, 2], [6, 3, 2]);
 
   return (
     <>
