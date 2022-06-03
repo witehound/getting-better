@@ -1099,28 +1099,26 @@ function App() {
     //for x run a function on y and z
     //function goes like check if cat 1 l > mouse c l to know the proper negagting
     //repaet for cat 2
-    //save
     let dis = 0;
     let temp = 0;
+    let third = 0;
     let resI = 0;
 
     const getLoc = (a) => {
       for (let b = 0; b < a.length - 1; b++) {
         if (b !== a.length - 1) {
           temp = a[2] > a[b] ? a[2] - a[b] : a[b] - a[2];
+          third = temp;
           if (dis === 0) {
-            dis = temp;
+            dis = third;
             resI = b;
             console.log("changed this");
-            break;
           } else if (dis === temp) {
             dis = temp;
             resI = b;
             console.log("changed thatt");
-            break;
           } else {
             resI = 2;
-            break;
           }
           // if (temp === dis) return "Mouse C";
         }
