@@ -1071,7 +1071,7 @@ function App() {
       console.log("valley", valley);
     }
 
-    // return valley;
+    return valley;
   }
 
   // console.log(countingValleys(8, "UDDDUDUUDDUUD"));
@@ -1136,7 +1136,237 @@ function App() {
     // getLoc(z);
   }
 
-  catAndMouse(2, [1, 3, 2], [6, 3, 2]);
+  // catAndMouse(2, [1, 3, 2], [6, 3, 2]);
+
+  function hurdleRace(k, height) {
+    let result = 0;
+    //for loop to compare heights in array to k
+    for (let a of height) {
+      //function only runs when height in array is larger than k
+      if (a > k) {
+        // we only need to update result is current result is zero || less than a - k
+        if (result === 0 || a - k > result) result = a - k;
+      }
+    }
+
+    return result;
+  }
+  // console.log(hurdleRace(1, [1, 2, 3, 3, 2]));
+
+  function designerPdfViewer(h, word) {
+    const letter = [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f",
+      "g",
+      "h",
+      "i",
+      "j",
+      "k",
+      "l",
+      "m",
+      "n",
+      "o",
+      "p",
+      "q",
+      "r",
+      "s",
+      "t",
+      "u",
+      "v",
+      "w",
+      "x",
+      "y",
+      "z",
+    ];
+    let height = 0;
+    let area = 0;
+    const splittedWord = word.split("");
+    const wordObject = {};
+    for (let i in letter) {
+      wordObject[letter[i]] = h[i];
+    }
+
+    for (let i in splittedWord) {
+      if (height === 0 || wordObject[splittedWord[i]] > height) {
+        height = wordObject[splittedWord[i]];
+      }
+    }
+
+    return (area = height * splittedWord.length);
+  }
+
+  // designerPdfViewer(
+  //   [
+  //     1, 3, 1, 3, 1, 4, 1, 3, 2, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+  //     7,
+  //   ],
+  //   "zaba"
+  // );
+
+  const gradingStudents = (a) => {
+    const newArr = [];
+    for (let i of a) {
+      console.log(i % 5);
+      if (i % 5 === 0 && i >= 40) newArr.push(i);
+      if (i % 5 <= 2) {
+        newArr.push(i);
+      }
+      if (i % 5 > 2) {
+        let add = 5 - (i % 5);
+        newArr.push(i + add);
+      }
+    }
+
+    console.log(newArr);
+  };
+  function computeJoinPoint(s1, s2) {
+    // Write your code here
+    // To debug: console.error('Debug messages...');
+    let var1;
+    let num1;
+    let var2;
+    let num2;
+
+    const convertToStringA = (a, b) => {
+      var1 = a;
+      console.log(var1);
+      for (let i of var1) {
+        b += i.parseInt();
+      }
+      num1 = b;
+    };
+
+    const convertTostringB = (b, c) => {
+      var2 = b.toString().split("");
+      for (let i of var2) {
+        c += i.parseInt();
+      }
+      num2 = c;
+    };
+
+    const checker = (a, b) => {
+      num1 = a;
+      num2 = b;
+      convertToStringA(a, num1);
+      convertTostringB(b, num2);
+      if (num1 !== num2) {
+        checker(num1, num2);
+      }
+      return num1;
+    };
+
+    // return ;
+  }
+  function computeJoinPoint(s1, s2) {
+    // Write your code here
+    // To debug: console.error('Debug messages...');
+    let var1;
+    let num1;
+    let var2;
+    let num2;
+    let arr1 = [];
+    let arr2 = [];
+
+    const convertToStringA = (a, b) => {
+      var1 = a.toString().split("");
+      for (let i of var1) {
+        b += parseInt(i);
+      }
+      num1 = b;
+      arr1.push(num1);
+    };
+
+    const convertTostringB = (b, c) => {
+      var2 = b.toString().split("");
+      for (let i of var2) {
+        c += parseInt(i);
+      }
+      num2 = c;
+      arr2.push(num2);
+    };
+
+    const checker = (a, b) => {
+      num1 = a;
+      num2 = b;
+      convertToStringA(a, num1);
+      convertTostringB(b, num2);
+      if (num1 !== num2) {
+        for (let i = 0; i < 5; i++) {
+          checker(num1, num2);
+        }
+      }
+
+      for (
+        let i = 0;
+        arr1.length > arr2.length ? arr2.length : arr1.length;
+        i++
+      ) {
+        for (
+          let j = 0;
+          arr1.length > arr2.length ? arr1.length : arr2.length;
+          j++
+        ) {
+          if (
+            arr1.length > arr2.length
+              ? arr2[i]
+              : arr1[i] == arr1.length > arr2.length
+              ? arr1[j]
+              : arr2[j]
+          ) {
+            console.log(arr1[i]);
+          }
+        }
+      }
+      console.log(num1);
+      console.log(num2);
+    };
+
+    checker(s1, s2);
+
+    // return ;
+  }
+
+  const utopianTree = (n) => {
+    // declared cyclecount to be able to use 1 as a starting cycle
+    let cycleCount = 0;
+    // this is the end result after all cycles
+    let result = 0;
+    // craeted a loop to run though cycle length
+    for (let i = 0; i <= n; i++) {
+      //used thr cycle count to determine if we aree in the first or second cycle
+      cycleCount++;
+      // if we aree in the second cycle we double the previous result
+      if (cycleCount % 2 === 0) result = result * 2;
+      // if we are in the first cycle we  increase by 1
+      else {
+        result++;
+      }
+    }
+
+    return result;
+  };
+
+  // utopianTree(1);
+
+  const angryProfessor = (k, a) => {
+    //here we need to find number of students that arrived early
+    //if any element of array a < 0 then student arrived early
+    //class is cancelled if student who arrived early is lower than threshold k
+    let count = 0;
+    for (let i of a) {
+      if (i <= 0) count++;
+    }
+    if (count < k) return "YES";
+    return "NO";
+  };
+
+  const beautifulDays = (i, j, k) => {};
+
+  beautifulDays(20, 23, 6);
 
   return (
     <>
