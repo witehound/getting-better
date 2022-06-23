@@ -1364,7 +1364,27 @@ function App() {
     return "NO";
   };
 
-  const beautifulDays = (i, j, k) => {};
+  const beautifulDays = (i, j, k) => {
+    let count = 0;
+    const reverseDay = (n) => {
+      let dayToString = n.toString().split("");
+      let newDay = "";
+      for (let i = dayToString.length - 1; i >= 0; i--) {
+        newDay += dayToString[i];
+      }
+      return parseInt(newDay);
+    };
+
+    for (let a = i; a <= j; a++) {
+      let reverse = reverseDay(a);
+      let diff;
+      a > reverse ? (diff = a - reverse) : (diff = a - reverse);
+
+      if ((diff / k) % 1 === 0) count++;
+    }
+
+    console.log(count);
+  };
 
   beautifulDays(20, 23, 6);
 
