@@ -1507,24 +1507,12 @@ function App() {
     }
 
     set(index, value) {
-      const newNode = new Node(value);
-      const next = this.get(index + 1);
-      newNode.next = next;
-      if (index > this.length - 1 || index < 0) return undefined;
-      let temp = this.head;
-      if (index === 0) {
-        this.head = newNode;
+      let temp = this.get(index);
+      if (temp) {
+        temp.value = value;
+        return true;
       }
-      for (let i = 0; i < index; i++) {
-        if (i === index - 1) {
-          temp.next = newNode;
-          if (index === this.length - 1) {
-            this.tail = temp;
-          }
-        }
-        temp = temp.next;
-      }
-      return newNode;
+      return false;
     }
   }
 
@@ -1534,7 +1522,7 @@ function App() {
   myLinkedList.push(9);
   console.log(myLinkedList.set(0, 7));
   console.log(myLinkedList.set(1, 9));
-  console.log(myLinkedList.set(2, 2));
+  console.log(myLinkedList.set(5, 2));
 
   console.log(myLinkedList);
 
