@@ -1365,7 +1365,10 @@ function App() {
   };
 
   const beautifulDays = (i, j, k) => {
+    // count to know how many beautiful days we have
     let count = 0;
+
+    // revrse day a function that helps to reverse the number
     const reverseDay = (n) => {
       let dayToString = n.toString().split("");
       let newDay = "";
@@ -1375,18 +1378,94 @@ function App() {
       return parseInt(newDay);
     };
 
+    // a loop to check if the differnce between a numnber and it reverse is a whole number
     for (let a = i; a <= j; a++) {
       let reverse = reverseDay(a);
       let diff;
       a > reverse ? (diff = a - reverse) : (diff = a - reverse);
-
       if ((diff / k) % 1 === 0) count++;
     }
 
-    console.log(count);
+    return count;
   };
 
-  beautifulDays(20, 23, 6);
+  // beautifulDays(20, 23, 6);
+
+  const viralAdvertising = (n) => {
+    let day, liked;
+    let cumulative = 0;
+    let shared = 5;
+
+    const getNewvalues = (a) => {
+      day = a;
+      liked = shared / 2;
+      if (liked % 1 !== 0) liked = liked - (liked % 1);
+      cumulative += liked;
+      shared = liked * 3;
+    };
+
+    for (let i = 1; i <= n; i++) {
+      getNewvalues(i);
+    }
+
+    return cumulative;
+  };
+
+  // viralAdvertising(3);
+
+  const saveThePrisoner = (n, m, s) => {
+    let mod = m % n;
+    console.log(mod);
+    let end = (mod + (s - 1)) % n || n;
+
+    return end;
+  };
+
+  // saveThePrisoner(3, 7, 3);
+
+  class Node {
+    constructor(value) {
+      this.value = value;
+      this.next = null;
+    }
+  }
+
+  class LinkedList {
+    constructor(value) {
+      const newNode = new Node(value);
+      this.head = newNode;
+      this.tail = newNode;
+      this.length = 1;
+    }
+
+    push(value) {
+      const newNode = new Node(value);
+      if (!this.haed) {
+        this.head = newNode;
+        this.tail = newNode;
+      }
+      this.tail.next = newNode;
+      this.tail = newNode;
+      this.length++;
+    }
+
+    pop() {
+      if (!this.head) return undefined;
+      pre = this.head;
+      temp = this.head;
+      while (temp.next) {
+        pre = temp;
+        temp = temp.next;
+      }
+      this.tail = pre;
+      this.tail.next = null;
+      this.length--;
+      if (this.length === 0) {
+        this.head = null;
+        this.tail = null;
+      }
+    }
+  }
 
   return (
     <>
