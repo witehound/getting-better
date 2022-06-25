@@ -1514,15 +1514,25 @@ function App() {
       }
       return false;
     }
+
+    insert(index, value) {
+      if (index === 0) return this.unshift(value);
+      if (index === this.length - 1) return this.push(value);
+      if (index >= this.length || index < 0) return null;
+      const newNode = new Node(value);
+      let temp = this.get(index - 1);
+      newNode.next = temp.next;
+      temp.next = newNode;
+      this.length++;
+      return;
+    }
   }
 
   const myLinkedList = new LinkedList(2);
   myLinkedList.push(5);
   myLinkedList.push(7);
   myLinkedList.push(9);
-  console.log(myLinkedList.set(0, 7));
-  console.log(myLinkedList.set(1, 9));
-  console.log(myLinkedList.set(5, 2));
+  myLinkedList.insert(2, 2);
 
   console.log(myLinkedList);
 
