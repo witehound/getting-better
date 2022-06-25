@@ -1524,7 +1524,33 @@ function App() {
       newNode.next = temp.next;
       temp.next = newNode;
       this.length++;
-      return;
+      return newNode;
+    }
+
+    remove(index) {
+      if (index === 0) return this.shift();
+      if (index === this.length - 1) return this.pop();
+      if (index >= this.length || index < 0) return null;
+      let pre = this.get(index - 1);
+      let temp = this.get(index + 1);
+      pre.next = null;
+      pre.next = temp;
+      this.length--;
+    }
+
+    reverse() {
+      let temp = this.head;
+      this.head = this.tail;
+      this.tail = temp;
+      let next = temp.next;
+      let prev = null;
+      for (let i = 0; i < this.length; i++) {
+        next = temp.next;
+        temp.next = prev;
+        prev = temp;
+        temp = next;
+      }
+      return this;
     }
   }
 
@@ -1532,9 +1558,9 @@ function App() {
   myLinkedList.push(5);
   myLinkedList.push(7);
   myLinkedList.push(9);
-  myLinkedList.insert(2, 2);
+  myLinkedList.remove(2);
 
-  console.log(myLinkedList);
+  console.log(myLinkedList.reverse());
 
   return (
     <>
