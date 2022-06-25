@@ -1440,19 +1440,23 @@ function App() {
 
     push(value) {
       const newNode = new Node(value);
-      if (!this.haed) {
+      if (this.head) {
+        this.tail.next = newNode;
+        this.tail = newNode;
+      }
+
+      if (!this.head) {
         this.head = newNode;
         this.tail = newNode;
       }
-      this.tail.next = newNode;
-      this.tail = newNode;
+
       this.length++;
     }
 
     pop() {
       if (!this.head) return undefined;
-      pre = this.head;
-      temp = this.head;
+      let pre = this.head;
+      let temp = this.head;
       while (temp.next) {
         pre = temp;
         temp = temp.next;
@@ -1494,15 +1498,45 @@ function App() {
     }
 
     get(index) {
-      if (!this.head) return undefined;
-      if (index === 1) return this.head;
+      if (index > this.length - 1 || index < 0) return null;
       let temp = this.head;
-      for (let i = 1; i <= this.length - 1; i++) {
+      for (let i = 0; i < this.length; i++) {
+        if (index === i) return temp;
         temp = temp.next;
-        if (index === i + 1) return temp;
       }
     }
+
+    set(index, value) {
+      const newNode = new Node(value);
+      const next = this.get(index + 1);
+      newNode.next = next;
+      if (index > this.length - 1 || index < 0) return undefined;
+      let temp = this.head;
+      if (index === 0) {
+        this.head = newNode;
+      }
+      for (let i = 0; i < index; i++) {
+        if (i === index - 1) {
+          temp.next = newNode;
+          if (index === this.length - 1) {
+            this.tail = temp;
+          }
+        }
+        temp = temp.next;
+      }
+      return newNode;
+    }
   }
+
+  const myLinkedList = new LinkedList(2);
+  myLinkedList.push(5);
+  myLinkedList.push(7);
+  myLinkedList.push(9);
+  console.log(myLinkedList.set(0, 7));
+  console.log(myLinkedList.set(1, 9));
+  console.log(myLinkedList.set(2, 2));
+
+  console.log(myLinkedList);
 
   return (
     <>
