@@ -1465,6 +1465,43 @@ function App() {
         this.tail = null;
       }
     }
+
+    unshift(value) {
+      const newNode = new Node(value);
+      if (!this.head) {
+        this.head = newNode;
+        this.tail = newNode;
+      } else {
+        newNode.next = this.head;
+        this.head = newNode;
+      }
+      this.length++;
+      return this;
+    }
+
+    shift() {
+      if (!this.head) return undefined;
+      let temp = this.head;
+      if (!temp.next) {
+        this.head = null;
+        this.tail = null;
+      } else {
+        this.head = this.head.next;
+      }
+      temp.next = null;
+      this.length--;
+      return temp;
+    }
+
+    get(index) {
+      if (!this.head) return undefined;
+      if (index === 1) return this.head;
+      let temp = this.head;
+      for (let i = 1; i <= this.length - 1; i++) {
+        temp = temp.next;
+        if (index === i + 1) return temp;
+      }
+    }
   }
 
   return (
