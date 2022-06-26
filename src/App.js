@@ -1542,25 +1542,282 @@ function App() {
       let temp = this.head;
       this.head = this.tail;
       this.tail = temp;
-      let next = temp.next;
       let prev = null;
+      let next = temp.next;
       for (let i = 0; i < this.length; i++) {
         next = temp.next;
         temp.next = prev;
         prev = temp;
         temp = next;
       }
-      return this;
     }
   }
 
-  const myLinkedList = new LinkedList(2);
-  myLinkedList.push(5);
-  myLinkedList.push(7);
-  myLinkedList.push(9);
-  myLinkedList.remove(2);
+  class DoubleNode {
+    constructor(value) {
+      this.value = value;
+      this.next = null;
+      this.prev = null;
+    }
+  }
 
-  console.log(myLinkedList.reverse());
+  class DoublyLinkedList {
+    constructor(value) {
+      const newDoubleNode = new DoubleNode(value);
+      this.head = newDoubleNode;
+      this.tail = newDoubleNode;
+      this.length = 1;
+    }
+
+    push(value) {
+      const newDoubleNode = new DoubleNode(value);
+      if (!this.head) {
+        this.head = newDoubleNode;
+        this.tail = newDoubleNode;
+      } else {
+        this.tail.next = newDoubleNode;
+        newDoubleNode.prev = this.tail;
+        this.tail = newDoubleNode;
+      }
+      this.length++;
+    }
+
+    pop() {
+      if (!this.head) return false;
+      let temp = this.tail;
+      this.tail = this.tail.prev;
+      this.tail.next = null;
+      temp.prev = null;
+      this.length--;
+      if (this.length <= 0) {
+        this.head = null;
+        this.tail = null;
+      }
+      return temp;
+    }
+
+    unshift(value) {
+      const newDoubleNode = new DoubleNode(value);
+      if (!this.head) {
+        this.tail = newDoubleNode;
+        this.head = newDoubleNode;
+      } else {
+        newDoubleNode.next = this.head;
+        this.head.prev = newDoubleNode;
+        this.head = newDoubleNode;
+      }
+
+      this.length++;
+      return newDoubleNode;
+    }
+
+    shift() {
+      if (!this.head) return false;
+      if (this.length === 1) {
+        this.head = null;
+        this.tail = null;
+      }
+      let temp = this.head.next;
+      temp.prev = null;
+      this.head.next = null;
+      this.head = temp;
+
+      this.length--;
+      return this;
+    }
+
+    get(index) {
+      if (index < 0 || index > this.length) return false;
+      let temp = this.head;
+      if (index < this.length / 2) {
+        for (let i = 0; i < this.length; i++) {
+          if (i === index) return temp;
+          temp = temp.next;
+        }
+      } else {
+        temp = this.tail;
+        for (let i = this.length - 1; i > index; i--) {
+          temp = temp.prev;
+        }
+      }
+      return temp;
+    }
+
+    set(index, value) {
+      if (index < 0 || index > this.length) return false;
+      let temp = this.get(index);
+      if (temp) {
+        temp.value = temp;
+        return true;
+      }
+      return false;
+    }
+
+    insert(index, value) {
+      if (index === 0) return this.unshift(value);
+      if (index === this.length - 1) return this.push(value);
+      if (index < 0 || index > this.length) return false;
+      const newDoubleNode = new DoubleNode(value);
+      if (!this.head) {
+        this.tail = newDoubleNode;
+        this.head = newDoubleNode;
+      } else {
+        let temp = this.get(index - 1);
+        newDoubleNode.prev = temp;
+        newDoubleNode.next = temp.next;
+        temp.next = newDoubleNode;
+      }
+      this.length++;
+      return true;
+    }
+
+    remove(index) {
+      if (index === 0) return this.shift();
+      if (index === this.length - 1) return this.pop();
+      if (index < 0 || index > this.length) return false;
+      let temp = this.get(index);
+      let prev = temp.prev;
+      let next = temp.next;
+
+      prev.next = next;
+      next.prev = prev;
+
+      return true;
+    }
+  }
+
+  //STACKS//
+
+  class Stack {
+    constructor(value) {
+      const newNode = new Node(value);
+      this.top = newNode;
+      this.length = 1;
+    }
+
+    pop() {
+      if (this.length <= 0) return false;
+      let temp = this.top;
+      this.top = this.top.next;
+      temp.next = null;
+      this.length--;
+    }
+
+    push(value) {
+      const newNode = new Node(value);
+      if (this.length <= 0) {
+        this.top = newNode;
+      } else {
+        newNode.next = this.top;
+        this.top = newNode;
+      }
+      this.length++;
+    }
+  }
+
+  ///QUEUES///
+  class Queue {
+    constructor(value) {
+      const newNode = new Node(value);
+      this.head = newNode;
+      this.tail = newNode;
+      this.length = 1;
+    }
+
+    dequeue() {
+      if (!this.head) return false;
+      if (this.length === 1) {
+        this.tail = null;
+        this.head = null;
+      } else {
+        let temp = this.head;
+        this.head = this.head.next;
+        temp.next = null;
+      }
+      this.length--;
+    }
+
+    enqueue(value) {
+      const newNode = new Node(value);
+      if (!this.head) {
+        this.head = newNode;
+        this.tail = newNode;
+        this.length = 1;
+      } else {
+        this.tail.next = newNode;
+        this.tail = newNode;
+        this.length++;
+      }
+    }
+  }
+
+  ///BINARY - TREES///
+
+  class TreeNode {
+    constructor(value) {
+      this.value = value;
+      this.left = null;
+      this.right = null;
+    }
+  }
+
+  class BST {
+    constructor() {
+      this.root = null;
+    }
+
+    insert(value) {
+      const newTreeNode = new TreeNode(value);
+      if (!this.root) {
+        this.root = newTreeNode;
+        return newTreeNode;
+      } else {
+        let temp = this.root;
+        while (temp) {
+          if (newTreeNode.value === temp.value) return false;
+          if (temp.value > value) {
+            if (!temp.left) {
+              temp.left = newTreeNode;
+              return newTreeNode;
+            }
+            temp = temp.left;
+          }
+          if (temp.value < value) {
+            if (!temp.right) {
+              temp.right = newTreeNode;
+              return newTreeNode;
+            }
+            temp = temp.right;
+          }
+        }
+      }
+    }
+
+    contains(value) {
+      if (!this.root) return false;
+      let temp = this.root;
+      while (temp) {
+        if (temp.value === value) return true;
+        if (temp.value > value) temp = temp.left;
+        else {
+          temp = temp.right;
+        }
+      }
+      return false;
+    }
+  }
+
+  ///HASHTABLE///
+
+  const bst = new BST();
+  bst.insert(10);
+  bst.insert(11);
+  bst.insert(15);
+  bst.insert(9);
+  bst.insert(8);
+  bst.remove(9);
+
+  console.log(bst);
 
   return (
     <>
