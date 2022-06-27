@@ -1859,7 +1859,19 @@ function App() {
           }
         }
       }
-      return this.dataMap[hash];
+      return undefined;
+    }
+
+    keys() {
+      let allKeys = [];
+      for (let i = 0; i < this.dataMap.length; i++) {
+        if (this.dataMap[i]) {
+          for (let i = 0; i < this.dataMap[i].length; i++) {
+            allKeys.push(this.dataMap[i][0]);
+          }
+        }
+      }
+      return allKeys;
     }
   }
 
