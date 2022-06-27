@@ -1807,17 +1807,61 @@ function App() {
     }
   }
 
+  class Csharp {
+    constructor(value) {
+      this.value = value;
+    }
+
+    print() {
+      return this.value;
+    }
+
+    reverse() {
+      this.value = this.value.reverse();
+      return this.value;
+    }
+
+    sort() {
+      this.value = this.value.sort();
+      return this.value;
+    }
+  }
   ///HASHTABLE///
+  class HashTable {
+    constructor(size = 7) {
+      this.dataMap = new Array(size);
+    }
 
-  const bst = new BST();
-  bst.insert(10);
-  bst.insert(11);
-  bst.insert(15);
-  bst.insert(9);
-  bst.insert(8);
-  bst.remove(9);
+    _hash(key) {
+      let hash = 0;
+      for (let i = 0; i < key.length; i++) {
+        hash = (hash + key.charCodeAt(i) * 23) % this.dataMap.length;
+      }
+      return hash;
+    }
 
-  console.log(bst);
+    set(key, value) {
+      let hash = this._hash(key);
+      let newArr = [key, value];
+      if (!this.dataMap[hash]) {
+        this.dataMap[hash] = [];
+      }
+      this.dataMap[hash].push(newArr);
+      return newArr;
+    }
+
+    get(key) {
+      let hash = this._hash(key);
+      if (this.dataMap[hash]) {
+        for (let i = 0; i < this.dataMap[hash].length; i++) {
+          if (this.dataMap[hash][0] === key) {
+            return this.dataMap[hash][1];
+          }
+        }
+      }
+      return this.dataMap[hash];
+    }
+  }
 
   return (
     <>
