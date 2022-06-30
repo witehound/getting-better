@@ -1,4 +1,8 @@
-import { CompareArrowsOutlined, SecurityRounded } from "@material-ui/icons";
+import {
+  CompareArrowsOutlined,
+  ContactsOutlined,
+  SecurityRounded,
+} from "@material-ui/icons";
 import "./App.css";
 import Product from "./case.js";
 
@@ -1874,6 +1878,218 @@ function App() {
       return allKeys;
     }
   }
+
+  //GRAPHS//
+  class Graph {
+    constructor() {
+      this.ajacencyList = {};
+    }
+
+    add(vertex) {
+      if (!this.ajacencyList[vertex]) {
+        this.ajacencyList[vertex] = [];
+        return true;
+      }
+      return false;
+    }
+
+    addEdge(vertex1, vertex2) {
+      if (this.ajacencyList[vertex1] && this.ajacencyList[vertex2]) {
+        this.ajacencyList[vertex1] = this.ajacencyList[vertex1].frilter(
+          (v) => v !== vertex2
+        );
+        this.ajacencyList[vertex2] = this.ajacencyList[vertex2].frilter(
+          (v) => v !== vertex1
+        );
+        return true;
+      }
+      return false;
+    }
+
+    removeEdge(vertex1, vertex2) {
+      if (this.ajacencyList[vertex1] && this.ajacencyList[vertex2]) {
+        return true;
+      }
+    }
+
+    removeVortex(vertex) {
+      if (this.ajacencyList[vertex]) {
+        let temp = this.ajacencyList[vertex];
+        for (let i = 0; i < temp.element; i++) {
+          this.removeEdge(vertex, temp[i]);
+        }
+        delete this.ajacencyList[vertex];
+        return this;
+      }
+      return false;
+    }
+  }
+
+  const carPooling = (a, b) => {
+    const hash = {};
+    let count = 0;
+    for (let i = 0; i < a.length; i++) {
+      if (!hash[a[i][1]]) hash[a[i][1]] = [];
+      if (!hash[a[i][2]]) hash[a[i][2]] = [];
+      hash[a[i][1]].push(i);
+      hash[a[i][2]].push(i);
+      count += 2;
+    }
+    let k = 0;
+    let track = 1;
+    let position = 0;
+    let passengers = 0;
+
+    while (track <= count) {
+      k++;
+      let temp = hash[k];
+      if (temp) {
+        for (let i = 0; i < temp.length; i++) {
+          if (position > 0) {
+            if (a[temp[i]][1] === k) {
+              position = a[temp[i]][1];
+              passengers += a[temp[i]][0];
+              console.log(passengers);
+            } else if (a[temp[i]][2] === k) {
+              position = a[temp[i]][2];
+              passengers -= a[temp[i]][0];
+              console.log(passengers);
+            }
+          }
+          if (passengers > b) {
+            console.log(false);
+            return false;
+          }
+          if (position <= 0) {
+            position = a[temp[i]][1];
+            passengers += a[temp[i]][0];
+          }
+        }
+        track++;
+      }
+    }
+    console.log();
+    return true;
+  };
+
+  //SELECTION SORT//
+  const selectSort = (a) => {
+    let min;
+    for (let i = 0; i < a.length - 1; i++) {
+      min = i;
+      for (let j = i + 1; j < a.length; j++) {
+        if (a[j] < a[min]) {
+          min = j;
+        }
+      }
+      if (i !== min) {
+        let temp = a[i];
+        a[i] = a[min];
+        a[min] = temp;
+      }
+    }
+    return a;
+  };
+
+  var productExceptSelf = function (nums) {
+    let hash = {};
+    let old = nums;
+
+    for (let i in nums) {
+      let temp = old;
+      temp[i] = 1;
+      console.log(temp);
+      old = nums;
+    }
+
+    console.log(nums);
+  };
+
+  // productExceptSelf([1, 2, 3, 4]);
+
+  class encodeAnddecode {
+    constructor() {
+      this.encoded = null;
+      this.decoded = null;
+    }
+    encode(arr) {
+      let encoded = "";
+      for (let i of arr) {
+        encoded += `${i}*#`;
+      }
+      this.encoded = encoded;
+      return encoded;
+    }
+
+    decode(str) {
+      let decoded = str.plit("*#");
+      this.decoded = decoded;
+      return decoded;
+    }
+  }
+
+  const longestConsecutive = function (nums) {
+    let newNums = nums.sort((a, b) => a - b);
+    console.log(newNums);
+    let count = 0;
+    let counts = [];
+    let temp = 0;
+    for (let i = 0; i < newNums.length; i++) {
+      if (i === 0) {
+        temp = newNums[i];
+        count += 1;
+        console.log(temp);
+      } else {
+        if (newNums[i] - temp === 1) {
+          temp = newNums[i];
+          count += 1;
+        } else if (newNums[i] - temp === 0) {
+          temp = newNums[i];
+        } else {
+          temp = newNums[i];
+          counts.push(count);
+          count = 1;
+        }
+      }
+    }
+    counts.push(count);
+    for (let i in counts) {
+      if (i === 0) count = counts[i];
+      else {
+        if (count < counts[i]) count = counts[i];
+      }
+    }
+    return count;
+  };
+
+  // console.log(longestConsecutive([1, 2, 0, 1]));
+
+  const twoSum = function (numbers, target) {
+    let leftLength = 0;
+    let rightLength = numbers.length - 1;
+    let right = numbers[rightLength];
+    let left = numbers[leftLength];
+    let ret = [];
+
+    while (ret.length < 1) {
+      console.log(right, rightLength);
+      console.log(left, leftLength);
+      if (right + left < target) {
+        leftLength += 1;
+        left = numbers[leftLength];
+      } else if (right + left > target) {
+        rightLength -= 1;
+        right = numbers[rightLength];
+      } else {
+        ret.push(leftLength, rightLength);
+        ret.sort((a, b) => a - b);
+        console.log(ret);
+        return true;
+      }
+    }
+  };
+
+  twoSum([3, 24, 50, 79, 88, 150, 345], 200);
 
   return (
     <>
