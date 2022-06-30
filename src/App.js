@@ -2072,8 +2072,6 @@ function App() {
     let ret = [];
 
     while (ret.length < 1) {
-      console.log(right, rightLength);
-      console.log(left, leftLength);
       if (right + left < target) {
         leftLength += 1;
         left = numbers[leftLength];
@@ -2081,15 +2079,45 @@ function App() {
         rightLength -= 1;
         right = numbers[rightLength];
       } else {
-        ret.push(leftLength, rightLength);
+        ret.push(leftLength + 1, rightLength + 1);
         ret.sort((a, b) => a - b);
-        console.log(ret);
-        return true;
       }
     }
   };
 
-  twoSum([3, 24, 50, 79, 88, 150, 345], 200);
+  // twoSum([3, 24, 50, 79, 88, 150, 345], 200);
+
+  const lengthOfLongestSubstring = function (s) {
+    if (s === " ") return 1;
+    let highest = 0;
+    let temp = 0;
+    let hash = {};
+
+    const getHighest = (b) => {
+      temp = 0;
+      hash = {};
+      for (let a of b) {
+        if (hash[a]) {
+          hash = {};
+          if (highest < temp) highest = temp;
+          temp = 0;
+        }
+        temp++;
+        hash[a] = [a];
+      }
+      return temp;
+    };
+
+    temp = getHighest(s);
+    if (highest < temp) highest = temp;
+    s = s.split("").reverse().join("");
+    temp = getHighest(s);
+    if (highest < temp) highest = temp;
+    console.log(highest);
+    return highest;
+  };
+
+  lengthOfLongestSubstring("bbbbb");
 
   return (
     <>
