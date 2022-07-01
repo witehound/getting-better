@@ -2117,7 +2117,47 @@ function App() {
     return highest;
   };
 
-  lengthOfLongestSubstring("bbbbb");
+  // lengthOfLongestSubstring("bbbbb");
+
+  const maxArea = (a) => {
+    let left = 0;
+    let right = a.length - 1;
+    let highest = 0;
+    let loop = false;
+    let leftPointer = a[left];
+    let rightPointer = a[right];
+    while (!loop) {
+      if (highest === 0) {
+        if (leftPointer > rightPointer) {
+          highest = rightPointer * (right - left);
+          right--;
+          rightPointer = a[right];
+        } else {
+          highest = leftPointer * (right - left);
+          left++;
+          leftPointer = a[left];
+        }
+      } else {
+        if (leftPointer > rightPointer) {
+          rightPointer * (right - left) > highest
+            ? (highest = rightPointer * (right - left))
+            : (highest = highest);
+          right--;
+          rightPointer = a[right];
+        } else {
+          leftPointer * (right - left) > highest
+            ? (highest = leftPointer * (right - left))
+            : (highest = highest);
+          left++;
+          leftPointer = a[left];
+          console.log(highest);
+        }
+      }
+      if (left > right) loop = true;
+    }
+  };
+
+  maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]);
 
   return (
     <>
