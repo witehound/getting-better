@@ -2157,7 +2157,140 @@ function App() {
     }
   };
 
-  maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]);
+  // maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]);
+
+  const maxProfit = function (prices) {
+    let left = 0;
+    let right = left + 1;
+    let max = 0;
+
+    let leftPointer = prices[left];
+    let rightPointer = prices[right];
+
+    let p = true;
+
+    while (prices[right] !== undefined) {
+      let temp = rightPointer - leftPointer;
+      right++;
+      left++;
+      rightPointer = prices[right];
+      if (prices[left] < leftPointer) leftPointer = prices[left];
+      if (temp > max) max = temp;
+    }
+    return max;
+  };
+
+  // console.log(maxProfit([2, 1, 2, 1, 0, 1, 2]));
+
+  const checkInclusion = function (s1, s2) {
+    let hash = {};
+    let count = 0;
+    let temp = 0;
+
+    for (let a of s1) {
+      hash[a] = a;
+      count++;
+    }
+
+    for (let b of s2) {
+      if (hash[b]) {
+        temp++;
+        if (temp === count) return true;
+      } else {
+        temp = 0;
+      }
+    }
+    return false;
+  };
+
+  // console.log(checkInclusion("ab", "eidbaooo"))
+  const noReplacement = (s, k) => {
+    let left = 0;
+    let right = 0;
+    let maxCharCount = 0;
+    const visited = {};
+
+    while (right < s.length) {
+      const char = s[right];
+      visited[char] = visited[char] ? visited[char] + 1 : 1;
+
+      if (visited[char] > maxCharCount) maxCharCount = visited[char];
+
+      if (right - left + 1 - maxCharCount > k) {
+        visited[s[left]]--;
+        left++;
+      }
+      right++;
+    }
+    return right - left;
+  };
+
+  // console.log(noReplacement("ABABBA", 2));
+
+  const isValid = (s) => {
+    let hash = {
+      ")": "(",
+      "}": "{",
+      "]": "[",
+    };
+
+    let stack = [];
+
+    for (let a of s) {
+      if (a === "{" || a === "(" || a === "[") stack.push(a);
+      else if (hash[a] === stack[stack.length - 1]) stack.pop();
+      else return false;
+    }
+
+    return stack.length ? false : true;
+  };
+
+  // console.log(isValid("(]"));
+  var search = function (nums, target) {
+    let left = 0;
+    let right = nums.length - 1;
+
+    while (left < right) {
+      let mid = (left + right) / 2;
+      if (target === nums[mid]) return mid;
+
+      if (nums[left] <= nums[mid]) {
+        if (target < nums[left] || target > nums[mid]) left = mid + 1;
+        else {
+          right = mid - 1;
+        }
+      } else {
+        if (target < nums[mid] || target > nums[right]) right = mid - 1;
+        else {
+          left = mid + 1;
+        }
+      }
+    }
+
+    return -1;
+  };
+
+  const findMin = (nums) => {
+    let left = 0;
+    let right = nums.length - 1;
+    let mid;
+    let min;
+
+    while (left < right) {
+      mid = Math.floor((right + left) / 2);
+
+      if (nums[left] >= nums[right]) {
+        min = nums[right];
+        left = mid + 1;
+      } else {
+        min = nums[left];
+        right = mid - 1;
+      }
+    }
+    return min;
+  };
+
+  console.log(findMin([2, 4, 5, 6, 7, 0, 1]));
 
   return (
     <>
