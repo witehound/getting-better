@@ -2347,6 +2347,7 @@ function App() {
   // );
 
   const kokoEatsBanana = (piles, h) => {
+    piles = piles.sort((a, b) => a - b);
     let l = 0;
     let r = Math.max(...piles);
     let k;
@@ -2354,16 +2355,13 @@ function App() {
 
     while (l <= r) {
       k = Math.floor((l + r) / 2);
-      console.log("k", k);
       let hours = 0;
       for (let p of piles) {
-        hours += Math.floor(p / k) + 1;
+        hours += Math.ceil(p / k);
       }
 
       if (hours <= h) {
-        if (k < res) {
-          res = k;
-        }
+        res = Math.min(k, res);
         r = k - 1;
       } else {
         l = k + 1;
@@ -2371,7 +2369,7 @@ function App() {
     }
     return res;
   };
-  console.log(kokoEatsBanana([3, 6, 7, 11], 8));
+  console.log(kokoEatsBanana([30, 11, 23, 4, 20], 6));
 
   return (
     <>
