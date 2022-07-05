@@ -2346,10 +2346,32 @@ function App() {
   //   )
   // );
 
-  const kokoEatsBanana = (piles, hours) => {
-    console.log(Math.max(piles));
+  const kokoEatsBanana = (piles, h) => {
+    let l = 0;
+    let r = Math.max(...piles);
+    let k;
+    let res = r;
+
+    while (l <= r) {
+      k = Math.floor((l + r) / 2);
+      console.log("k", k);
+      let hours = 0;
+      for (let p of piles) {
+        hours += Math.floor(p / k) + 1;
+      }
+
+      if (hours <= h) {
+        if (k < res) {
+          res = k;
+        }
+        r = k - 1;
+      } else {
+        l = k + 1;
+      }
+    }
+    return res;
   };
-  kokoEatsBanana([3, 6, 7, 11], 8);
+  console.log(kokoEatsBanana([3, 6, 7, 11], 8));
 
   return (
     <>
