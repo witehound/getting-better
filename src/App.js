@@ -2274,20 +2274,25 @@ function App() {
     let left = 0;
     let right = nums.length - 1;
     let mid;
+    let res = nums[left];
 
     while (left < right) {
       mid = Math.floor((right + left) / 2);
 
+      if (nums[left] < nums[right]) {
+        res = Math.min(res, nums[left]);
+        return res;
+      }
       if (nums[mid] >= nums[left]) {
         left = mid + 1;
       } else {
         right = mid - 1;
       }
     }
-    return mid;
+    return res;
   };
 
-  // console.log(findMin([2, 4, 5, 6, 7, 0, 1]));
+  console.log(findMin([2, 4, 5, 6, 7, 0, 1]));
 
   const binarySearchTarget = (nums, target) => {
     let l = 0;
@@ -2369,7 +2374,7 @@ function App() {
     }
     return res;
   };
-  console.log(kokoEatsBanana([30, 11, 23, 4, 20], 6));
+  // console.log(kokoEatsBanana([30, 11, 23, 4, 20], 6));
 
   return (
     <>
